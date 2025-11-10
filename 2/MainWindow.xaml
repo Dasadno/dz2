@@ -1,0 +1,17 @@
+﻿<Window x:Class="_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button Click="StartProgress" Content="Запустить, йоу" Margin="15"/>
+            <TextBlock x:Name="firstTh" Margin="10"/>
+            <TextBlock x:Name="secondTh" Margin="10"/>
+            <TextBlock x:Name="thirdTh" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
