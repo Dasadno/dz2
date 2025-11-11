@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Button Click="StartProgress" Content="Запустить, йоу" Margin="15"/>
+            <Button Click="Start" Content="Запустить, йоу" Margin="15"/>
             <TextBlock x:Name="firstTh" Margin="10"/>
             <TextBlock x:Name="secondTh" Margin="10"/>
             <TextBlock x:Name="thirdTh" Margin="10"/>

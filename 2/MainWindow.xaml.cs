@@ -21,19 +21,58 @@ namespace _2
             InitializeComponent();
         }
 
-        private void StartProgress(object sender, RoutedEventArgs e)
+        private void Start(object sender, RoutedEventArgs e)
         {
             var thread1 = new Thread(() =>
             {
-                thread1.Priority = ThreadPriority.Highest;
                 for (int i = 0; i < 100; i++)
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        
-                    });
+                    Thread.Sleep(50);
+                    Dispatcher.Invoke(() => firstTh.Text = $"Поток с высшим приоритетом: {i}");
                 }
             });
+
+            var thread2 = new Thread(() =>
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.Sleep(50);
+                    Dispatcher.Invoke(() => secondTh.Text = $"Поток с средним приоритетом: {i}");
+                }
+            });
+
+            var thread3 = new Thread(() =>
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.Sleep(50);
+                    Dispatcher.Invoke(() => thirdTh.Text = $"Поток с низким приоритетом: {i}");
+                }
+            });
+
+            thread1.Priority = ThreadPriority.Highest;
+            thread2.Priority = ThreadPriority.Normal;
+            thread3.Priority = ThreadPriority.Lowest;
+
+            thread1.Start();
+            thread2.Start();
+            thread3.Start();
+
+            Thread waitThread = new Thread(() =>
+            {
+                thread1.Join();
+                thread2.Join();
+                thread3.Join();
+
+                Dispatcher.Invoke(() =>
+                {
+                    firstTh.Text = "Поток с высшим приоритетом: завершен";
+                    secondTh.Text = "Поток с средним приоритетом: завершен";
+                    thirdTh.Text = "Поток с низким приоритетом: завершен";
+                });
+            });
+
+            waitThread.Start();
         }
     }
 }
